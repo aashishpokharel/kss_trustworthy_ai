@@ -1,0 +1,35 @@
+# Virtual environment
+venv/
+.venv/
+env/
+.env/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyc
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env.local
+.env.*.local
+
+# Generated files (from demo runs)
+new_file.py
+test_output.txt
+
+# Logs
+*.log
+audit_export.json

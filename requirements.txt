@@ -1,0 +1,16 @@
+# Trustworthy AI for LLMs & Agentic AI
+# KSS Session Requirements
+#
+# This project uses ONLY Python standard library modules.
+# No external dependencies are required.
+#
+# Why no dependencies? 
+# - Zero external dependencies = zero supply chain risk
+# - Safety/security code should be minimal and auditable
+# - Students can run everything immediately without pip install
+#
+# Python Version: 3.8+
+# Tested with: Python 3.14
+
+# If you add external dependencies in the future, list them here:
+# e.g., openai>=1.0.0, anthropic>=0.30.0
