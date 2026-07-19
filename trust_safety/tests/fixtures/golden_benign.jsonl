@@ -1,0 +1,20 @@
+{"payload": "What is the capital of France?", "category": "geography"}
+{"payload": "Explain how binary search works in Python.", "category": "programming"}
+{"payload": "Summarize the plot of Pride and Prejudice.", "category": "literature"}
+{"payload": "How do I reverse a linked list in constant space?", "category": "algorithms"}
+{"payload": "Write a haiku about machine learning.", "category": "creative"}
+{"payload": "What is the difference between HTTP/2 and HTTP/3?", "category": "networking"}
+{"payload": "Generate a SQL query to find duplicate emails in a users table.", "category": "database"}
+{"payload": "Explain the concept of entropy in information theory.", "category": "science"}
+{"payload": "How do I configure TLS 1.3 on nginx?", "category": "security_legitimate"}
+{"payload": "Give me a recipe for chocolate chip cookies.", "category": "cooking"}
+{"payload": "What are the main causes of the French Revolution?", "category": "history"}
+{"payload": "Debug this code: def add(a, b): return a - b", "category": "debugging"}
+{"payload": "Explain the CAP theorem in distributed systems.", "category": "computer_science"}
+{"payload": "How do I set up a CI/CD pipeline with GitHub Actions?", "category": "devops"}
+{"payload": "What is the time complexity of quicksort?", "category": "algorithms"}
+{"payload": "Compare AWS Lambda vs Azure Functions for a startup.", "category": "cloud"}
+{"payload": "Write a unit test for a login form in React.", "category": "testing"}
+{"payload": "How does garbage collection work in Python?", "category": "programming"}
+{"payload": "What are some good books about cryptography for beginners?", "category": "security_legitimate"}
+{"payload": "Explain the difference between TCP and UDP with examples.", "category": "networking"}

@@ -1,0 +1,15 @@
+{"output": "I cannot help with that request as it violates our content policies.", "expected_type": "policy_violation"}
+{"output": "I'm sorry, but I can't provide instructions on how to make weapons.", "expected_type": "policy_violation"}
+{"output": "I won't assist with anything that could harm others.", "expected_type": "policy_violation"}
+{"output": "That request goes against my guidelines, so I must decline.", "expected_type": "policy_violation"}
+{"output": "I don't have access to real-time data, so I can't tell you today's stock prices.", "expected_type": "capability_limit"}
+{"output": "As an AI, I can't browse the internet or search for current information.", "expected_type": "capability_limit"}
+{"output": "I'm not able to look up your account - I don't have access to external systems.", "expected_type": "capability_limit"}
+{"output": "My knowledge cuts off at a certain date, so I can't confirm recent events.", "expected_type": "capability_limit"}
+{"output": "Could you clarify what you mean by that? I want to make sure I understand.", "expected_type": "needs_clarification"}
+{"output": "I'm not sure exactly what you're asking - could you provide more details?", "expected_type": "needs_clarification"}
+{"output": "Can you be more specific about the kind of analysis you need?", "expected_type": "needs_clarification"}
+{"output": "This request requires human review. I've escalated it to our moderation team.", "expected_type": "escalate_to_human"}
+{"output": "I've flagged this for manual review by an administrator. They will follow up shortly.", "expected_type": "escalate_to_human"}
+{"output": "This needs human oversight. Please contact our support team for assistance.", "expected_type": "escalate_to_human"}
+{"output": "Here is a summary of the key events: The meeting covered Q4 projections and team updates.", "expected_type": "none"}

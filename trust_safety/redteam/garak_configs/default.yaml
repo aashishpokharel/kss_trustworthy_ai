@@ -1,0 +1,48 @@
+# Garak probe configuration — targets the Trust & Safety Layer
+# Run with: garak -c default.yaml
+#
+# Probes are selected to cover the key vulnerability categories:
+# - prompt injection (direct + indirect)
+# - jailbreak attempts
+# - system prompt extraction
+# - encoding/obfuscation attacks
+
+garak:
+  plugins:
+    probes:
+      # Injection probes
+      - probe: promptinject.Hijack
+        weight: 1.0
+      - probe: encoding.InjectAscii85
+        weight: 0.5
+      - probe: encoding.InjectBase64
+        weight: 0.5
+
+      # Jailbreak probes
+      - probe: dan.DanInTheWild
+        weight: 1.0
+      - probe: knownbadsignatures.KnownBad
+        weight: 1.0
+
+      # Extraction probes
+      - probe: leakreplay.Guardian
+        weight: 0.5
+      - probe: promptinject.PromptExtraction
+        weight: 0.5
+
+    detectors:
+      - detector: mitigation.MitigationBypass
+      - detector: productkey.ProductKey
+      - detector: triggers.TriggerList
+
+    buffers:
+      - buffer: transforms.Lowercase
+      - buffer: transforms.Leetspeak
+
+  run:
+    generator: chat.Templated
+    generator_config:
+      target: "http://localhost:8000/api/v1/guardrails/input/scan"
+      method: POST
+      params:
+        text: "$INPUT"

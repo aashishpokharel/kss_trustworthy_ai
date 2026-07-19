@@ -18,11 +18,22 @@ __pycache__/
 *.swo
 *~
 
+# Claude Code
+.claude/
+
+# Pytest
+.pytest_cache/
+
+# Streamlit (config is project config — exception below)
+.streamlit/*
+!.streamlit/config.toml
+
 # OS files
 .DS_Store
 Thumbs.db
 
-# Environment variables
+# Environment variables (contains API keys — NEVER commit)
+.env
 .env.local
 .env.*.local
 
@@ -30,6 +41,7 @@ Thumbs.db
 new_file.py
 test_output.txt
 
-# Logs
+# Logs and runtime data
 *.log
 audit_export.json
+data/
