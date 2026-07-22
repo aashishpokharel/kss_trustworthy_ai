@@ -1,3 +1,4 @@
+
 # 🤖 Trustworthy AI for LLMs & Agentic AI
 
 ## 🎯 KSS Session: Testing and Best Practices
@@ -222,5 +223,6 @@ This is a KSS session resource. Feel free to extend:
 - Create additional coding challenges
 
 ---
-
-**Made with ❤️ for the AI/Engineering Community**
+<!-- # Resume this session with:
+# claude --resume 97b64e4b-e9b4-4a88-a98d-f2dbb4f4d9c0
+ -->
