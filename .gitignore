@@ -43,5 +43,10 @@ test_output.txt
 
 # Logs and runtime data
 *.log
+*.jsonl
 audit_export.json
 data/
+
+# Session transcripts and conversation logs (may contain keys)
+SESSION_LOG.jsonl
+docs/Logged Conversation.txt
