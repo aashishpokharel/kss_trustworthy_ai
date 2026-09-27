@@ -5,11 +5,10 @@ Reads ``questions.json`` (regenerate it with ``python3 build_questions.py``).
 Stdlib only, no dependencies.
 
     python3 quiz.py --list
-    python3 quiz.py --session 2
-    python3 quiz.py --type pre_poll
-    python3 quiz.py --tier stretch
-    python3 quiz.py --random 5
-    python3 quiz.py --id S3-Q2
+    python3 quiz.py --tier core
+    python3 quiz.py --type hands_on
+    python3 quiz.py --random 2
+    python3 quiz.py --id C3
     python3 quiz.py --stats
 """
 
@@ -251,16 +250,15 @@ def build_parser() -> argparse.ArgumentParser:
         epilog=(
             "examples:\n"
             "  python3 quiz.py --list\n"
-            "  python3 quiz.py --session 2\n"
-            "  python3 quiz.py --type pre_poll\n"
-            "  python3 quiz.py --tier stretch --session 3\n"
-            "  python3 quiz.py --random 5 --seed 7\n"
+            "  python3 quiz.py --tier core\n"
+            "  python3 quiz.py --type hands_on\n"
+            "  python3 quiz.py --random 2 --seed 7\n"
             "  python3 quiz.py --must-see --list\n"
-            "  python3 quiz.py --id S3-Q2\n"
+            "  python3 quiz.py --id C3\n"
             "  python3 quiz.py --stats\n"
         ),
     )
-    parser.add_argument("--session", type=int, metavar="N", help="filter by session number (5 = KSS track)")
+    parser.add_argument("--session", type=int, metavar="N", help="filter by session number (0 = whole-course core set)")
     parser.add_argument("--type", dest="qtype", choices=TYPES, help="filter by question type")
     parser.add_argument("--tier", choices=TIERS, help="filter by tier")
     parser.add_argument("--must-see", action="store_true", help="only the * must-see questions")

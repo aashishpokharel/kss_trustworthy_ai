@@ -4,12 +4,14 @@
 The Markdown files are the **single source of truth**. Every question block has the
 same shape::
 
-    ### S2-Q4 · "Most important feature = 0.42"
-    **core** · Understand → Apply · `in_class`
+    ### C2 · Three audiences, one truth ★ must-see
+    **core** · Understand → Apply → Analyze · `in_class`
 
     **Q.** ...
     **A.** ...
     **Pitfalls.** ...
+
+``★ must-see`` is optional and marks the non-negotiable questions.
 
 This script parses those blocks and writes ``questions.json`` so the Markdown (slides,
 reading) and the CLI (``quiz.py``) always agree on IDs and content.
@@ -33,16 +35,14 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 OUT_PATH = HERE / "questions.json"
 
-# session number, source file, human-readable session title
+# session number, source file, human-readable session title.
+# Session 0 is the whole-course core set: one question per domain (C1-C4).
 SESSIONS = [
-    (1, "01_foundations.md", "Foundations of Responsible & Trustworthy AI"),
-    (2, "02_explainable_ai.md", "Explainable AI Techniques"),
-    (3, "03_causal_ai.md", "Causal AI for Deeper Trust"),
-    (4, "04_integration_audit_regulation.md", "Integration, Auditing & Regulation"),
-    (5, "05_internal_kss_engineers.md", "Internal KSS Track — AI for Software & AI Engineers"),
+    (0, "00_core_questions.md", "Whole-Course Core Set — one question per domain"),
 ]
 
-HEADING_RE = re.compile(r"^### (?P<id>S[1-9]-Q\d+|K\d+) · (?P<title>.+?)\s*$")
+# C1-C4 = whole-course core set; S{n}-Q{m} = per-session drills; K{n} = internal KSS track.
+HEADING_RE = re.compile(r"^### (?P<id>C\d+|S[1-9]-Q\d+|K\d+) · (?P<title>.+?)\s*$")
 META_RE = re.compile(
     r"^\*\*(?P<tier>core|stretch)\*\*\s*·\s*(?P<bloom>[^·`]+?)\s*·\s*`(?P<type>[a-z_]+)`\s*$"
 )
