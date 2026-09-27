@@ -28,6 +28,13 @@ KSS track = 16. Every question carries `tier` (core/stretch), `type`
 (pre_poll/in_class/quiz/discussion/essay/hands_on), a Bloom progression, a full answer,
 and — where useful — a **Pitfalls** paragraph.
 
+## Tooling note
+
+The five session Markdown files are frozen exactly as written. The supporting tooling in
+this folder (`build_questions.py`, `quiz.py`, `questions.json`) was refreshed on
+2026-09-27 so fenced code / ASCII DAG blocks stay verbatim instead of being collapsed
+into a single line (visible in `S3-Q2`'s answer).
+
 ## How to revisit this version
 
 Both scripts are **self-contained**: `quiz.py` reads the `questions.json` sitting next to

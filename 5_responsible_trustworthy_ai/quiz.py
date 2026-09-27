@@ -56,9 +56,15 @@ def rule(char: str = "-") -> None:
 
 def print_block(text: str, indent: str = "") -> None:
     """Print Markdown-ish text, wrapping prose but leaving tables/lists intact."""
-    width = term_width() - len(indent)
     for para in text.split("\n\n"):
-        lines = [ln.strip() for ln in para.splitlines() if ln.strip()]
+        raw_lines = [ln for ln in para.splitlines() if ln.strip()]
+        if any(ln.strip().startswith("```") for ln in raw_lines):
+            # fenced code / ASCII DAG: print verbatim to keep alignment
+            for ln in raw_lines:
+                print(indent + ln.rstrip())
+            print()
+            continue
+        lines = [ln.strip() for ln in raw_lines]
         if not lines:
             continue
         if any(ln.startswith("|") for ln in lines):

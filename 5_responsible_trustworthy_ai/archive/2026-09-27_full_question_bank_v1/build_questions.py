@@ -64,6 +64,7 @@ def unwrap(text: str) -> str:
     out: list[str] = []
     para: list[str] = []
     item: str | None = None
+    in_fence = False
 
     def flush_para() -> None:
         if para:
@@ -78,6 +79,17 @@ def unwrap(text: str) -> str:
 
     for raw in text.splitlines():
         stripped = raw.strip()
+        if in_fence:
+            out.append(raw.rstrip())
+            if stripped.startswith("```"):
+                in_fence = False
+            continue
+        if stripped.startswith("```"):
+            flush_para()
+            flush_item()
+            out.append(stripped)
+            in_fence = True
+            continue
         if not stripped:
             flush_para()
             flush_item()
