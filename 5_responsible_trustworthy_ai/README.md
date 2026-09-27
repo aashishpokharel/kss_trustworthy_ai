@@ -15,18 +15,18 @@ The fellowship runs on a **small set of whole-course questions** — not a hidde
 not a long drill list. This folder holds exactly **four questions, one per domain**, and every one of
 them is answered and discussed inside the session.
 
-The design rule is simple: each question is **anchored in one domain but cannot be answered inside
-it**. A strong answer reaches into the other three. `C4` is the master synthesis and assumes the
-artifacts produced in `C1`–`C3`.
+The design rule is simple: **each of the four is a whole-course synthesis question** — anchored in
+its own domain, and *not* answerable inside it. A strong answer reaches into the other three domains.
+`C4` is additionally the **capstone**: it assumes the artifacts produced in `C1`–`C3`.
 
 ## The four questions
 
 | ID | Question | Anchored in | Also requires | Use it as | Time |
 |---|---|---|---|---|---|
-| `C1` | **Deconstruct the trustworthiness pitch** | Session 1 — Foundations | XAI, causal thinking, regulation | cold opener / plenary | 15–20 min |
-| `C2` | **Three audiences, one truth** | Session 2 — Explainable AI | rights & transparency, causal reading, audit trail | in-class writing + plenary | 20–25 min |
-| `C3` | **The 2.9% trap** | Session 3 — Causal AI | validity, explanation misuse, decision gates | in-class or take-home | 25–30 min |
-| `C4` | **The 90-minute pre-deployment review** | Session 4 — Integration, Auditing & Regulation | all of the above | workshop / assessment | 30–45 min |
+| `C1` | **Deconstruct the trustworthiness pitch** | Session 1 — Foundations | S2 (explanations) · S3 (causal reading) · S4 (EU AI Act / RMF) | cold opener / plenary | 15–20 min |
+| `C2` | **Three audiences, one truth** | Session 2 — Explainable AI | S1 (rights & transparency) · S3 (causal reading) · S4 (logging & audit trail) | in-class writing + plenary | 20–25 min |
+| `C3` | **The 2.9% trap** | Session 3 — Causal AI | S1 (validity & measurement) · S2 (explanation misuse) · S4 (decision gates & monitoring) | in-class or take-home | 25–30 min |
+| `C4` | **The 90-minute pre-deployment review** | Session 4 — Integration, Auditing & Regulation | S1–S3 (all of the above) | workshop / assessment | 30–45 min |
 
 All four are ★ **must-see**. Full text, model answers, per-question rubrics, pitfalls and discussion
 prompts live in **[`00_core_questions.md`](00_core_questions.md)**.
@@ -130,7 +130,7 @@ the same IDs, and the **Markdown is the source of truth**.
 {
   "id": "C3",
   "session": 0,
-  "session_title": "Whole-Course Core Set — one question per domain",
+  "session_title": "Whole-Course Core Set — four questions, one per domain",
   "topic": "The 2.9% trap",
   "bloom": ["Understand", "Analyze", "Evaluate", "Create"],
   "tier": "core",

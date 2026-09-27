@@ -38,7 +38,7 @@ OUT_PATH = HERE / "questions.json"
 # session number, source file, human-readable session title.
 # Session 0 is the whole-course core set: one question per domain (C1-C4).
 SESSIONS = [
-    (0, "00_core_questions.md", "Whole-Course Core Set — one question per domain"),
+    (0, "00_core_questions.md", "Whole-Course Core Set — four questions, one per domain"),
 ]
 
 # C1-C4 = whole-course core set; S{n}-Q{m} = per-session drills; K{n} = internal KSS track.

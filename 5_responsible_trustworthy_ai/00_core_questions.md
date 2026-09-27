@@ -10,13 +10,18 @@ the domains are connected.
 
 | ID | Anchored in | Must also reach into | Use it as | Time |
 |---|---|---|---|---|
-| [`C1`](#c1--deconstruct-the-trustworthiness-pitch-★-must-see) | **Session 1** — Foundations | XAI, causal, regulation | Cold opener / plenary, no prep | 15–20 min |
-| [`C2`](#c2--three-audiences-one-truth-★-must-see) | **Session 2** — Explainable AI | Foundations rights, causal reading, audit trail | In-class writing + plenary | 20–25 min |
-| [`C3`](#c3--the-29-trap-★-must-see) | **Session 3** — Causal AI | Validity, explanation misuse, decision gates | In-class or take-home | 25–30 min |
-| [`C4`](#c4--the-90-minute-pre-deployment-review) | **Session 4** — Integration, Auditing & Regulation | All of the above | Workshop / assessment | 30–45 min |
+| [`C1`](#c1--deconstruct-the-trustworthiness-pitch-★-must-see) | **Session 1** — Foundations | S2 (explanations) · S3 (causal reading) · S4 (EU AI Act / NIST RMF) | Cold opener / plenary, no prep | 15–20 min |
+| [`C2`](#c2--three-audiences-one-truth-★-must-see) | **Session 2** — Explainable AI | S1 (rights & transparency) · S3 (causal reading) · S4 (logging & audit trail) | In-class writing + plenary | 20–25 min |
+| [`C3`](#c3--the-29-trap-★-must-see) | **Session 3** — Causal AI | S1 (validity & measurement) · S2 (explanation misuse) · S4 (decision gates, monitoring) | In-class or take-home | 25–30 min |
+| [`C4`](#c4--the-90-minute-pre-deployment-review) | **Session 4** — Integration, Auditing & Regulation | S1–S3 (all of them) | Workshop / assessment | 30–45 min |
 
-`C4` is the **master synthesis**: it assumes the artifacts students produced in `C1`–`C3` and asks
-them to put those artifacts into an audit pack and defend a go / no-go call.
+Two things make this a *whole-course* set rather than four session drills:
+
+1. **Every** question is a synthesis question — each is anchored in its own domain and still
+   needs the other three to be answered well. None of the four can be closed inside a single
+   session.
+2. `C4` is additionally the **capstone**: it assumes the artifacts students produced in
+   `C1`–`C3` and asks them to pack those artifacts for an audit and defend a go / no-go call.
 
 ---
 
@@ -79,7 +84,7 @@ engineer on call. Nobody in the room gets to be the CEO.
 ### C1 · Deconstruct the trustworthiness pitch ★ must-see
 **core** · Understand → Analyze → Evaluate · `in_class`
 
-**Anchored in:** Session 1 (Foundations) · **Also requires:** XAI, causal thinking, regulation · **~15–20 min, cold**
+**Anchored in:** Session 1 (Foundations) · **Also requires:** Session 2 (explanations), Session 3 (causal reading), Session 4 (EU AI Act / NIST AI RMF) · **~15–20 min, cold**
 
 **Q.** Take the team's pitch, clause by clause. For **each clause**, say (a) which trustworthiness
 property it actually supplies evidence for, (b) which property it leaves completely untouched, and
@@ -159,7 +164,7 @@ audit pack and defend a go / no-go decision.
 ### C2 · Three audiences, one truth ★ must-see
 **core** · Understand → Apply → Analyze · `in_class`
 
-**Anchored in:** Session 2 (Explainable AI) · **Also requires:** rights & transparency, causal reading, logging/audit · **~20–25 min**
+**Anchored in:** Session 2 (Explainable AI) · **Also requires:** Session 1 (rights & transparency), Session 3 (causal reading), Session 4 (logging & audit trail) · **~20–25 min**
 
 **Q.** Customer #4471 asked for a credit-limit increase and was refused. The SHAP list behind that
 decision, in descending magnitude, is: `utilisation +0.41 · missed payment (recent) +0.28 · app usage
@@ -242,7 +247,7 @@ spec — `C4` files these as the transparency and post-market evidence in the au
 ### C3 · The 2.9% trap ★ must-see
 **core** · Understand → Analyze → Evaluate → Create · `in_class`
 
-**Anchored in:** Session 3 (Causal AI) · **Also requires:** validity & measurement, explanation misuse, decision gates · **~25–30 min**
+**Anchored in:** Session 3 (Causal AI) · **Also requires:** Session 1 (validity & measurement), Session 2 (explanation misuse), Session 4 (decision gates, monitoring) · **~25–30 min**
 
 **Q.** The head of risk reads the pilot — *+2.9% 12-month default rate in the treatment group* — and
 wants CreditBoost switched off. The growth lead reads the same table — *+3.2% spend* — and wants to
@@ -386,7 +391,7 @@ decile.)
 ### C4 · The 90-minute pre-deployment review ★ must-see
 **stretch** · Analyze → Evaluate → Create · `hands_on`
 
-**Anchored in:** Session 4 (Integration, Auditing & Regulation) · **Also requires:** everything in `C1`–`C3` · **~30–45 min workshop**
+**Anchored in:** Session 4 (Integration, Auditing & Regulation) · **Also requires:** Sessions 1–3 — the artifacts produced in `C1`–`C3` · **~30–45 min workshop**
 
 **Q.** You have 90 minutes before Northline's pre-deployment review. Using the artifacts from `C1`–`C3`,
 assemble the pack and defend a decision: (a) map the **four NIST AI RMF functions** to what CreditBoost
