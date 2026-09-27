@@ -19,25 +19,57 @@ The design rule is simple: **each of the four is a whole-course synthesis questi
 its own domain, and *not* answerable inside it. A strong answer reaches into the other three domains.
 `C4` is additionally the **capstone**: it assumes the artifacts produced in `C1`–`C3`.
 
+Two further tests hold for **every** question, and `build_questions.py` enforces both:
+
+1. **It answers a fundamental problem** — a durable question that outlives the tooling, stated at the
+   top of each question. Answers are marked against the problem, not against a checklist of topics.
+2. **It lands in the lifecycle** — *development*, *deployment* or *end-user serving* — and most land
+   in more than one. The phase is *where the decision has to be made*, not a slot to fill: this set is
+   deliberately **not** one question per phase.
+
 ## The four questions
 
-| ID | Question | Anchored in | Also requires | Use it as | Time |
-|---|---|---|---|---|---|
-| `C1` | **Deconstruct the trustworthiness pitch** | Session 1 — Foundations | S2 (explanations) · S3 (causal reading) · S4 (EU AI Act / RMF) | cold opener / plenary | 15–20 min |
-| `C2` | **Three audiences, one truth** | Session 2 — Explainable AI | S1 (rights & transparency) · S3 (causal reading) · S4 (logging & audit trail) | in-class writing + plenary | 20–25 min |
-| `C3` | **The 2.9% trap** | Session 3 — Causal AI | S1 (validity & measurement) · S2 (explanation misuse) · S4 (decision gates & monitoring) | in-class or take-home | 25–30 min |
-| `C4` | **The 90-minute pre-deployment review** | Session 4 — Integration, Auditing & Regulation | S1–S3 (all of the above) | workshop / assessment | 30–45 min |
+| ID | Question | Anchored in | Also requires | Phase | Use it as | Time |
+|---|---|---|---|---|---|---|
+| `C1` | **Deconstruct the trustworthiness pitch** | Session 1 — Foundations | S2 (explanations) · S3 (causal reading) · S4 (EU AI Act / RMF) | development → deployment | cold opener / plenary | 15–20 min |
+| `C2` | **Three audiences, one truth** | Session 2 — Explainable AI | S1 (rights & transparency) · S3 (causal reading) · S4 (logging & audit trail) | end-user serving → deployment | in-class writing + plenary | 20–25 min |
+| `C3` | **The 2.9% trap** | Session 3 — Causal AI | S1 (validity & measurement) · S2 (explanation misuse) · S4 (decision gates & monitoring) | development → deployment | in-class or take-home | 25–30 min |
+| `C4` | **The 90-minute pre-deployment review** | Session 4 — Integration, Auditing & Regulation | S1–S3 (all of the above) | deployment → end-user serving | workshop / assessment | 30–45 min |
 
 All four are ★ **must-see**. Full text, model answers, per-question rubrics, pitfalls and discussion
 prompts live in **[`00_core_questions.md`](00_core_questions.md)**.
 
+## Fundamental problem and lifecycle phase
+
+The two lines that open every question, and why they are there:
+
+| ID | The fundamental problem it answers | Phase it lands in |
+|---|---|---|
+| `C1` | What licenses the claim that a system is trustworthy? | development → deployment (the gate) |
+| `C2` | What makes an explanation adequate — and to whom? | end-user serving → deployment conditions |
+| `C3` | When may a system act on a number? | development (the pilot) → deployment (switch off / scale up) |
+| `C4` | Who is accountable once the system is live, and by what mechanism? | deployment → end-user serving |
+
+| Phase | The decision made in it | Questions |
+|---|---|---|
+| **Development** | data, target and feature choices; training; validation; the pilot; documentation at birth | `C1` (the artifacts on trial were built here) · `C3` (pilot and study design) |
+| **Deployment** | the pre-deployment gate: conformity, oversight, release conditions, who signs | `C1` (the gate) · `C2` (release conditions on the letter layer) · `C3` (switch off / scale up) · `C4` (pack and go / no-go) |
+| **End-user serving** | live decisions people are affected by: letters, appeals, incidents, monitoring, decommissioning | `C2` (refusal, explanation, appeal) · `C4` (monitoring, incident response, decommissioning) |
+
+Coverage is uneven **on purpose** — what matters is that no question is phase-blind, and that a student
+can say where each one has to be acted on. Both properties are checkable from the CLI
+(`python3 quiz.py --phase serving`, `python3 quiz.py --stats`), and a question that states neither
+problem nor phase fails `python3 build_questions.py --check`.
+
 ## The running case
 
-All four questions work on **one case**, so students walk a whole lifecycle instead of four
-disconnected exercises: **Northline Bank — "CreditBoost"**, a nightly model that raises customers'
-credit limits automatically (≈40,000/month) plus an **LLM layer that writes the customer letters**,
-deployed in the EU and UK, and carrying an unexplained **1.7× refusal disparity**, a flawed pilot, two
-incidents in a quarter, and no post-market monitoring plan.
+All four questions work on **one case**, so students walk a whole lifecycle —
+**development → deployment → end-user serving** — instead of four disconnected exercises: **Northline
+Bank — "CreditBoost"**, a nightly model that raises customers' credit limits automatically
+(≈40,000/month) plus an **LLM layer that writes the customer letters**, deployed in the EU and UK, and
+carrying an unexplained **1.7× refusal disparity**, a flawed pilot, two incidents in a quarter, and no
+post-market monitoring plan. The case section defines the three phases and shows where each one bites;
+hand it out at the start of the course.
 
 Hand out that case section at the start of the course
 ([`#the-running-case`](00_core_questions.md#the-running-case)) and let each session add its own lens.
@@ -136,6 +168,9 @@ the same IDs, and the **Markdown is the source of truth**.
   "tier": "core",
   "type": "in_class",
   "must_see": true,
+  "problem": "When may a system act on a number?",
+  "phases": ["development", "deployment"],
+  "phase_note": "the pilot and the study design are development-stage work; …",
   "question": "…",
   "answer": "…",
   "pitfalls": "…"
@@ -143,7 +178,9 @@ the same IDs, and the **Markdown is the source of truth**.
 ```
 
 `tier` ∈ `core | stretch` · `type` ∈ `pre_poll | in_class | quiz | discussion | essay | hands_on`
-· `session` is `0` for the whole-course set · `question`, `answer`, `pitfalls` keep their Markdown
+· `phases` ⊆ `development | deployment | serving` (**a question may name more than one** — the phases
+are a relation, not a slot) · `session` is `0` for the whole-course set · `problem` and `phase_note` are
+the two required statements, one per question · `question`, `answer`, `pitfalls` keep their Markdown
 (tables, bullet lists and fenced DAG blocks survive the round trip).
 
 **To add a fifth question:** write a block in `00_core_questions.md` in the same shape as the others —
@@ -152,13 +189,19 @@ the same IDs, and the **Markdown is the source of truth**.
 ### C5 · Title here ★ must-see
 **core** · Understand → Apply · `in_class`
 
+**Fundamental problem:** the durable problem this question answers
+
+**Phase:** development → deployment — which part of the question sits in which phase
+
 **Q.** …
 **A.** …
 **Pitfalls.** …
 ```
 
 — then run `python3 build_questions.py` to regenerate `questions.json` (and `--check` to validate
-without writing).
+without writing). The build rejects a question that has no `**Fundamental problem:**` line, no
+`**Phase:**` line, a phase outside `development | deployment | serving`, or a phase with no clause after
+the em dash saying which part of the question lands where.
 
 ---
 
@@ -167,13 +210,15 @@ without writing).
 `quiz.py` is a dependency-free stdlib CLI over `questions.json`:
 
 ```bash
-python3 quiz.py --list                 # table of all four questions
+python3 quiz.py --list                 # table of all four questions (ID, tier, type, phase)
 python3 quiz.py --tier core            # C1-C3
 python3 quiz.py --type hands_on        # the workshop question
+python3 quiz.py --phase serving        # the two questions that stand with a customer
+python3 quiz.py --phase deployment     # everything decided at a deployment gate
 python3 quiz.py --must-see --list      # all four
 python3 quiz.py --random 2 --seed 7    # two random questions, answers hidden
 python3 quiz.py --id C3                # one question with the full answer
-python3 quiz.py --stats                # counts per session / type / tier / Bloom
+python3 quiz.py --stats                # counts per session / type / tier / phase / Bloom
 python3 build_questions.py --check     # validate the Markdown, write nothing
 ```
 
@@ -219,7 +264,9 @@ git checkout 34d3ee9 -- 5_responsible_trustworthy_ai/01_foundations.md \
 ```
 
 (If you restore them, point `SESSIONS` in `build_questions.py` back at those files so they appear in
-`questions.json` again.)
+`questions.json` again. Those restored v1 drills are **not** held to the `**Fundamental problem:**` /
+`**Phase:**` rule — that rule applies to the whole-course core set, session `0` — so the build keeps
+passing after a restore.)
 
 ## Sources
 

@@ -7,6 +7,7 @@ Stdlib only, no dependencies.
     python3 quiz.py --list
     python3 quiz.py --tier core
     python3 quiz.py --type hands_on
+    python3 quiz.py --phase serving
     python3 quiz.py --random 2
     python3 quiz.py --id C3
     python3 quiz.py --stats
@@ -28,7 +29,19 @@ BANK_PATH = HERE / "questions.json"
 
 TYPES = ("pre_poll", "in_class", "quiz", "discussion", "essay", "hands_on")
 TIERS = ("core", "stretch")
+# Lifecycle phases a question can land in. A question may name several: the phases are a
+# relation, not a slot. PHASE_ABBR keeps the --list table narrow.
+PHASES = ("development", "deployment", "serving")
+PHASE_ABBR = {"development": "dev", "deployment": "dep", "serving": "srv"}
+# Canonical token → the name students see in the full question view.
+PHASE_LABEL = {"development": "development", "deployment": "deployment", "serving": "end-user serving"}
+PHASE_LEGEND = "dev = development · dep = deployment · srv = end-user serving"
 BULLET_RE = re.compile(r"^(?:[-*+]|\d+\.)\s+\S")
+
+
+def phase_cell(q: dict) -> str:
+    """Compact phase cell for tables, e.g. ``dev+dep``."""
+    return "+".join(PHASE_ABBR.get(p, p[:3]) for p in q.get("phases") or [])
 
 
 def load_bank(path: Path = BANK_PATH) -> dict:
@@ -109,6 +122,9 @@ def print_question(q: dict, *, show_answer: bool) -> None:
     print(f"{q['id']} · {q['topic']}")
     print(f"  {q['session_title']}  [{q['session']}]")
     print(f"  {' · '.join(tags)}")
+    phases = q.get("phases") or []
+    if phases:
+        print(f"  phase: {' → '.join(PHASE_LABEL.get(p, p) for p in phases)}")
     print()
     print_block(q["question"], indent="  ")
     if show_answer:
@@ -128,6 +144,8 @@ def select(bank: dict, args: argparse.Namespace) -> list[dict]:
         rows = [q for q in rows if q["type"] == args.qtype]
     if args.tier:
         rows = [q for q in rows if q["tier"] == args.tier]
+    if args.phase:
+        rows = [q for q in rows if args.phase in (q.get("phases") or [])]
     if args.must_see:
         rows = [q for q in rows if q["must_see"]]
     return rows
@@ -140,8 +158,9 @@ def cmd_list(rows: list[dict]) -> None:
     id_w = max(len("ID"), max(len(q["id"]) for q in rows))
     tier_w = max(len("TIER"), max(len(q["tier"]) for q in rows))
     type_w = max(len("TYPE"), max(len(q["type"]) for q in rows))
-    room = term_width() - (id_w + tier_w + type_w + 9)
-    print(f"{'ID':<{id_w}}  {'TIER':<{tier_w}}  {'TYPE':<{type_w}}  S  TOPIC")
+    phase_w = max(len("PHASE"), max(len(phase_cell(q)) for q in rows))
+    room = term_width() - (id_w + tier_w + type_w + phase_w + 11)
+    print(f"{'ID':<{id_w}}  {'TIER':<{tier_w}}  {'TYPE':<{type_w}}  {'PHASE':<{phase_w}}  S  TOPIC")
     print("-" * term_width())
     for q in rows:
         topic = q["topic"]
@@ -150,9 +169,11 @@ def cmd_list(rows: list[dict]) -> None:
         star = "*" if q["must_see"] else " "
         print(
             f"{q['id']:<{id_w}}  {q['tier']:<{tier_w}}  {q['type']:<{type_w}}  "
-            f"{q['session']}  {star}{topic}"
+            f"{phase_cell(q):<{phase_w}}  {q['session']}  {star}{topic}"
         )
     print("-" * term_width())
+    if any(phase_cell(q) for q in rows):
+        print(PHASE_LEGEND)
     sessions = {q["session"] for q in rows}
     hint = f"--session {next(iter(sessions))}" if len(sessions) == 1 else "--list"
     print(f"{len(rows)} question(s).  * = must-see.  Walk them with: python3 quiz.py {hint}")
@@ -179,8 +200,14 @@ def cmd_stats(bank: dict) -> None:
     )
     tally((q["type"] for q in qs), "By question type")
     tally((q["tier"] for q in qs), "By tier")
+    tally(
+        (PHASE_ABBR.get(p, p) for q in qs for p in (q.get("phases") or [])),
+        "By lifecycle phase (may double-count)",
+    )
     tally((level for q in qs for level in q["bloom"]), "By Bloom level")
     print("Extras")
+    print(f"  {'fundamental problem stated':<38} {sum(1 for q in qs if q.get('problem')):3d}")
+    print(f"  {'with a lifecycle phase':<38} {sum(1 for q in qs if q.get('phases')):3d}")
     print(f"  {'must-see (usable cold)':<38} {sum(1 for q in qs if q['must_see']):3d}")
     print(f"  {'with pitfalls block':<38} {sum(1 for q in qs if q['pitfalls']):3d}")
 
@@ -198,10 +225,14 @@ def cmd_random(rows: list[dict], count: int, seed: int | None) -> None:
         tags = [q["tier"], " → ".join(q["bloom"]), q["type"]]
         if q["must_see"]:
             tags.append("★ must-see")
-        print(f"  {' · '.join(tags)}  (session {q['session']})")
+        phase = phase_cell(q)
+        where = f"session {q['session']}" + (f" · {phase}" if phase else "")
+        print(f"  {' · '.join(tags)}  ({where})")
         print_block(q["question"], indent="  ")
         rule()
     print("Answers hidden. Reveal one with:  python3 quiz.py --id " + picks[0]["id"])
+    if any(phase_cell(q) for q in picks):
+        print(PHASE_LEGEND)
 
 
 def cmd_walk(rows: list[dict], *, no_pause: bool) -> None:
@@ -252,6 +283,7 @@ def build_parser() -> argparse.ArgumentParser:
             "  python3 quiz.py --list\n"
             "  python3 quiz.py --tier core\n"
             "  python3 quiz.py --type hands_on\n"
+            "  python3 quiz.py --phase serving\n"
             "  python3 quiz.py --random 2 --seed 7\n"
             "  python3 quiz.py --must-see --list\n"
             "  python3 quiz.py --id C3\n"
@@ -261,6 +293,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--session", type=int, metavar="N", help="filter by session number (0 = whole-course core set)")
     parser.add_argument("--type", dest="qtype", choices=TYPES, help="filter by question type")
     parser.add_argument("--tier", choices=TIERS, help="filter by tier")
+    parser.add_argument(
+        "--phase",
+        choices=PHASES,
+        help="filter by lifecycle phase (development | deployment | serving); a question can match more than one",
+    )
     parser.add_argument("--must-see", action="store_true", help="only the * must-see questions")
     parser.add_argument("--list", action="store_true", help="print a table of matching questions")
     parser.add_argument("--stats", action="store_true", help="counts per session / type / tier / Bloom")

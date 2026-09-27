@@ -8,20 +8,28 @@ reaches into the other three and into the engineering discussions behind them. T
 point of the set — by the end, students should move between the domains without being told that
 the domains are connected.
 
-| ID | Anchored in | Must also reach into | Use it as | Time |
-|---|---|---|---|---|
-| [`C1`](#c1--deconstruct-the-trustworthiness-pitch-★-must-see) | **Session 1** — Foundations | S2 (explanations) · S3 (causal reading) · S4 (EU AI Act / NIST RMF) | Cold opener / plenary, no prep | 15–20 min |
-| [`C2`](#c2--three-audiences-one-truth-★-must-see) | **Session 2** — Explainable AI | S1 (rights & transparency) · S3 (causal reading) · S4 (logging & audit trail) | In-class writing + plenary | 20–25 min |
-| [`C3`](#c3--the-29-trap-★-must-see) | **Session 3** — Causal AI | S1 (validity & measurement) · S2 (explanation misuse) · S4 (decision gates, monitoring) | In-class or take-home | 25–30 min |
-| [`C4`](#c4--the-90-minute-pre-deployment-review) | **Session 4** — Integration, Auditing & Regulation | S1–S3 (all of them) | Workshop / assessment | 30–45 min |
+| ID | Anchored in | Must also reach into | Phase | Use it as | Time |
+|---|---|---|---|---|---|
+| [`C1`](#c1--deconstruct-the-trustworthiness-pitch-★-must-see) | **Session 1** — Foundations | S2 (explanations) · S3 (causal reading) · S4 (EU AI Act / NIST RMF) | development → deployment | Cold opener / plenary, no prep | 15–20 min |
+| [`C2`](#c2--three-audiences-one-truth-★-must-see) | **Session 2** — Explainable AI | S1 (rights & transparency) · S3 (causal reading) · S4 (logging & audit trail) | end-user serving (+ deployment conditions) | In-class writing + plenary | 20–25 min |
+| [`C3`](#c3--the-29-trap-★-must-see) | **Session 3** — Causal AI | S1 (validity & measurement) · S2 (explanation misuse) · S4 (decision gates, monitoring) | development → deployment | In-class or take-home | 25–30 min |
+| [`C4`](#c4--the-90-minute-pre-deployment-review) | **Session 4** — Integration, Auditing & Regulation | S1–S3 (all of them) | deployment → end-user serving | Workshop / assessment | 30–45 min |
 
-Two things make this a *whole-course* set rather than four session drills:
+Four things hold this set together:
 
 1. **Every** question is a synthesis question — each is anchored in its own domain and still
    needs the other three to be answered well. None of the four can be closed inside a single
    session.
 2. `C4` is additionally the **capstone**: it assumes the artifacts students produced in
    `C1`–`C3` and asks them to pack those artifacts for an audit and defend a go / no-go call.
+3. **Every** question answers a **fundamental problem**, stated at the top of the question — a durable
+   question that outlives the tooling (what licenses a trust claim; what makes an explanation
+   adequate; when a system may act on a number; who is accountable once it is live). Each answer is
+   marked against the problem, not against a checklist of topics.
+4. **Every** question lands in the **lifecycle** — *development*, *deployment* or *end-user serving* —
+   and most land in more than one. The phase is *where the decision has to be made*, not a slot to
+   fill: `C1` and `C4` both sit at deployment gates, `C3` starts in development, `C2` is the only
+   question standing with a customer. This set is deliberately **not** one question per phase.
 
 ---
 
@@ -79,12 +87,29 @@ model-risk guidance.
 **Roles you can assign in the room:** model owner · risk officer · auditor · customer advocate ·
 engineer on call. Nobody in the room gets to be the CEO.
 
+**The lifecycle, in three phases.** Every question lands in one or more of these. The phase is *where
+the decision has to be made* against the deadline someone actually faces:
+
+| Phase | What it covers | In this case |
+|---|---|---|
+| **Development** | data, target and feature choices; training; validation; the pilot; documentation at birth | the 240 features (including `postcode`, `app usage`, merchant-category spend), monthly retraining, the model card, the 2024 pilot |
+| **Deployment** | the pre-deployment gate: conformity, oversight, release conditions, who signs | the pitch, the EU AI Act conformity assessment, the pre-deployment review, go / no-go |
+| **End-user serving** | live decisions people are affected by: letters, appeals, incidents, monitoring, decommissioning | 40,000 limit raises a month, the refusal letters, the 480 misaddressed letters, the 3-day outage that defaulted to "no increase" |
+
 ---
 
 ### C1 · Deconstruct the trustworthiness pitch ★ must-see
 **core** · Understand → Analyze → Evaluate · `in_class`
 
 **Anchored in:** Session 1 (Foundations) · **Also requires:** Session 2 (explanations), Session 3 (causal reading), Session 4 (EU AI Act / NIST AI RMF) · **~15–20 min, cold**
+
+**Fundamental problem:** What **licenses** the claim that a system is trustworthy? Compliance, accuracy
+and logging are claims about *evidence*; trustworthiness is a claim about the *system*. Responsible AI
+lives in that gap, and every vendor pitch exploits it.
+
+**Phase:** development → deployment — the artifacts on trial (model card, logs, feature list,
+conformity assessment) were produced during development, and the claim is asserted at the deployment
+gate. Serving enters only as what the claim promises customers afterwards.
 
 **Q.** Take the team's pitch, clause by clause. For **each clause**, say (a) which trustworthiness
 property it actually supplies evidence for, (b) which property it leaves completely untouched, and
@@ -165,6 +190,15 @@ audit pack and defend a go / no-go decision.
 **core** · Understand → Apply → Analyze · `in_class`
 
 **Anchored in:** Session 2 (Explainable AI) · **Also requires:** Session 1 (rights & transparency), Session 3 (causal reading), Session 4 (logging & audit trail) · **~20–25 min**
+
+**Fundamental problem:** What makes an explanation of a decision **adequate** — and adequate *to whom*?
+Adequacy is relative to an audience and a purpose, and for the person affected it is a legal
+entitlement, not a courtesy. A fluent explanation that is plausible and wrong is worse than a terse
+traceable one.
+
+**Phase:** end-user serving → deployment — the decision and the letter reach a real customer, and the
+appeal route is a serving-time obligation; the guardrails and the evaluation on the generator are
+release conditions, so the question is also asked at deployment, before the layer writes again.
 
 **Q.** Customer #4471 asked for a credit-limit increase and was refused. The SHAP list behind that
 decision, in descending magnitude, is: `utilisation +0.41 · missed payment (recent) +0.28 · app usage
@@ -248,6 +282,15 @@ spec — `C4` files these as the transparency and post-market evidence in the au
 **core** · Understand → Analyze → Evaluate → Create · `in_class`
 
 **Anchored in:** Session 3 (Causal AI) · **Also requires:** Session 1 (validity & measurement), Session 2 (explanation misuse), Session 4 (decision gates, monitoring) · **~25–30 min**
+
+**Fundamental problem:** When may a system **act** on a number? A prediction only needs association,
+but an action *is* an intervention, and an intervention needs an estimand before it is justified.
+Fairness inherits the same asymmetry: a refusal-rate gap stays an association until someone commits to
+a design that identifies it.
+
+**Phase:** development → deployment — the pilot and the study design are development-stage work;
+switching CreditBoost off, or raising limits everywhere, is the deployment decision taken on that work.
+The cost of getting it wrong is paid in serving, by customers.
 
 **Q.** The head of risk reads the pilot — *+2.9% 12-month default rate in the treatment group* — and
 wants CreditBoost switched off. The growth lead reads the same table — *+3.2% spend* — and wants to
@@ -392,6 +435,14 @@ decile.)
 **stretch** · Analyze → Evaluate → Create · `hands_on`
 
 **Anchored in:** Session 4 (Integration, Auditing & Regulation) · **Also requires:** Sessions 1–3 — the artifacts produced in `C1`–`C3` · **~30–45 min workshop**
+
+**Fundamental problem:** Who is **accountable** once the system is live, and by what mechanism? Every
+failure mode needs a threshold, an owner, an action and a clock — without them the audit pack is
+decoration, and "trustworthy" is a claim nobody is answerable for.
+
+**Phase:** deployment → end-user serving — the pack, the conditions and the go / no-go are deployment;
+monitoring, incident response, the outage contingency and decommissioning are serving-time obligations
+that have to be designed *before* release, which is why the review is the moment they get tested.
 
 **Q.** You have 90 minutes before Northline's pre-deployment review. Using the artifacts from `C1`–`C3`,
 assemble the pack and defend a decision: (a) map the **four NIST AI RMF functions** to what CreditBoost
@@ -544,6 +595,22 @@ bank or the customer?
 | **Session 2** — Explainable AI | `C2` (with `C1`, `C3`) | Produce audience-appropriate explanations; state the limits of attribution; specify and evaluate a generative explanation layer |
 | **Session 3** — Causal AI | `C3` (with `C2`, `C4`) | Move between association, intervention and counterfactual; build a DAG; write an estimand; design an identification strategy; judge when causal precision is worth its cost |
 | **Session 4** — Integration, Auditing & Regulation | `C4` (with all) | Critique a system against NIST AI RMF and the EU AI Act; assemble an evidence pack; design post-market monitoring and incident response; defend a go / no-go decision |
+
+### What each question is *for* — problem and phase
+
+| ID | The fundamental problem it answers | Phase it lands in |
+|---|---|---|
+| `C1` | What licenses the claim that a system is trustworthy? | development → deployment (the gate) |
+| `C2` | What makes an explanation adequate — and to whom? | end-user serving → deployment conditions |
+| `C3` | When may a system act on a number? | development (the pilot) → deployment (switch off / scale up) |
+| `C4` | Who is accountable once the system is live, and by what mechanism? | deployment → end-user serving |
+
+Phase coverage is deliberately uneven, and that is the design: `C1` and `C4` both sit at deployment
+gates because that is where evidence and accountability are actually tested, the development phase
+enters through `C3` because a causal claim cannot be retro-fitted after release, and two questions stand
+where a customer is affected. What matters is that no question is **phase-blind** — each names where a
+student has to act. `build_questions.py` enforces both properties: a question with no stated fundamental
+problem, or with no phase, fails validation.
 
 Wider per-session question sets (71 questions, v1) are preserved — see
 [`archive/2026-09-27_full_question_bank_v1/MANIFEST.md`](archive/2026-09-27_full_question_bank_v1/MANIFEST.md)
