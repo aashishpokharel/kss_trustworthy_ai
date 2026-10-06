@@ -1,6 +1,27 @@
 """
-Trustworthy AI Configuration
-Demonstrates configuration best practices for LLM applications
+Trustworthy AI Configuration (teaching layer)
+============================================
+
+Standard-library-only configuration template used throughout the KSS
+session lessons. Demonstrates configuration best practices for LLM
+applications: no hardcoded secrets, validated settings, explicit safety
+controls, and a single ``TrustLevel`` knob that scales the guardrails.
+
+This module is the *pedagogical* counterpart of the production
+configuration layer:
+
+    Teaching (this module)          Production (trust_safety)
+    ------------------------------  -------------------------------------------
+    ``TrustworthyConfig``           ``config.Settings`` (pydantic-settings,
+                                    env-driven, validated via ``validate_rules``)
+    ``TrustLevel``                  ``config.Settings.trust_level`` plus the
+                                    compliance profiles in ``policies.defaults``
+                                    (``ComplianceProfile`` / ``GDPR_PROFILE`` ...)
+    ``TrustworthyConfig.validate``  ``config.Settings.validate_rules``
+
+The production equivalents require Python >= 3.10 plus the packages listed
+in ``trust_safety/requirements.txt``. This teaching template deliberately
+does not; it is the version the lessons exercise.
 """
 import os
 from dataclasses import dataclass, field

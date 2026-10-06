@@ -1,3 +1,7 @@
+# Production guardrail stack — requires Python >= 3.10 (PEP 604 unions,
+# builtin generic subscripting in `tuple[...]`/`list[...]`).
+# The stdlib-only session lessons do NOT need any of this; they import
+# `trust_safety.lessons` and run on Python 3.8+ with no dependencies.
 fastapi>=0.115.0
 uvicorn[standard]>=0.34.0
 pydantic>=2.10.0

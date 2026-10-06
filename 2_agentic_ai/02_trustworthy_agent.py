@@ -21,7 +21,7 @@ import sys
 import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
-from shared.safety import (
+from trust_safety.lessons.safety import (
     ContentFilter,
     PromptInjectionDetector,
     OutputValidator,
@@ -29,7 +29,7 @@ from shared.safety import (
     AuditEntry,
     compute_hash
 )
-from shared.config import TrustworthyConfig, TrustLevel
+from trust_safety.lessons.config import TrustworthyConfig, TrustLevel
 from typing import Dict, List, Optional, Callable, Any, Set
 from dataclasses import dataclass, field
 from enum import Enum

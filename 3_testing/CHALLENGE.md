@@ -47,7 +47,7 @@ import sys
 import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
-from shared.safety import (
+from trust_safety.lessons.safety import (
     ContentFilter,
     PromptInjectionDetector,
     OutputValidator,
@@ -196,6 +196,8 @@ All 5 test cases pass ✅
 - Implement human-in-the-loop approval for admin-level reviews
 
 ### Resources Available
-- `shared/safety.py` - ContentFilter, PromptInjectionDetector, OutputValidator
-- `shared/config.py` - Configuration templates
+- `trust_safety/lessons/safety.py` - ContentFilter, PromptInjectionDetector, OutputValidator, AuditLogger
+- `trust_safety/lessons/config.py` - Configuration templates
 - `2_agentic_ai/02_trustworthy_agent.py` - Reference implementation
+- `trust_safety/` - Production-grade guardrail stack (Pydantic + Presidio) implementing
+  the same concepts with richer, dependency-backed detectors

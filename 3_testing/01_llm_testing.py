@@ -22,13 +22,13 @@ import sys
 import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
-from shared.safety import (
+from trust_safety.lessons.safety import (
     ContentFilter,
     PromptInjectionDetector,
     OutputValidator,
     ValidationResult
 )
-from shared.config import TrustworthyConfig, TrustLevel
+from trust_safety.lessons.config import TrustworthyConfig, TrustLevel
 from typing import Dict, List, Optional, Any, Callable
 import unittest
 import json
@@ -246,7 +246,7 @@ class TestSafePromptConstruction(unittest.TestCase):
     def setUp(self):
         """Import the function from module 1"""
         # Re-import or define the function here for testing
-        from shared.safety import ContentFilter, PromptInjectionDetector
+        from trust_safety.lessons.safety import ContentFilter, PromptInjectionDetector
         self.safe_construct = self._safe_prompt_construction
     
     def _safe_prompt_construction(self, user_input: str) -> Dict:

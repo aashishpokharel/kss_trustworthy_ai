@@ -1,6 +1,41 @@
 """
-Trustworthy AI Safety Utilities
-Content filtering, prompt injection detection, output validation
+Trustworthy AI Safety Utilities (teaching layer)
+===============================================
+
+Standard-library-only safety primitives used throughout the KSS session
+lessons: content filtering, prompt injection detection, output validation
+and audit logging. No third-party dependencies, so every line is readable
+and every demo runs immediately after checkout.
+
+This module is the *pedagogical* counterpart of the production guardrail
+stack that ships in ``trust_safety``. Each class below has a richer,
+dependency-backed equivalent:
+
+    Teaching (this module)                     Production (trust_safety)
+    ------------------------------------------  -------------------------------------------
+    ``ContentFilter.detect_pii``               ``guardrails.input.pii_detector.PIIDetector``
+                                               (``.detect`` — Presidio + custom recognizers)
+    ``ContentFilter.sanitize_pii``             ``PIIDetector.redact`` / ``PIIDetector.mask``
+    ``ContentFilter.contains_sensitive_topic`` ``guardrails.input.sensitive_topic_classifier``
+                                               ``.SensitiveTopicClassifier``
+    ``PromptInjectionDetector.check``          ``guardrails.input.injection_detector``
+                                               ``.InjectionDetector.scan``
+    ``PromptInjectionDetector.compute_risk_score``
+                                               ``InjectionDetector.scan`` -> ``InjectionResult.score``
+    ``OutputValidator.validate_json_output``   ``guardrails.output.schema_validator``
+                                               ``.OutputSchemaValidator``
+    ``OutputValidator.check_hallucination_risk``
+                                               ``guardrails.output.groundedness_checker``
+                                               ``.GroundednessChecker``
+    ``OutputValidator.check_confidence``       ``guardrails.output.refusal_classifier``
+                                               ``.RefusalClassifier``
+    ``AuditLogger`` / ``AuditEntry``           ``governance.audit_log.store.AuditLogger``
+                                               (append-only, tamper-evident store)
+
+The production equivalents require Python >= 3.10 plus the packages listed
+in ``trust_safety/requirements.txt``. These teaching classes deliberately
+do not; they are the version the lessons exercise, and the version used to
+demonstrate the ideas behind the production pipeline.
 """
 import re
 import hashlib

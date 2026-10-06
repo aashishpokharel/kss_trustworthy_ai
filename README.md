@@ -53,7 +53,7 @@ python "2_agentic_ai/02_trustworthy_agent.py"
 
 ### Part 4: Safety Utilities Deep Dive (30 min)
 
-Key components from `shared/safety.py`:
+Key components from `trust_safety/lessons/safety.py`:
 
 | Component | Purpose |
 |-----------|---------|
@@ -61,6 +61,12 @@ Key components from `shared/safety.py`:
 | `PromptInjectionDetector` | Pattern-based injection detection, risk scoring |
 | `OutputValidator` | JSON schema validation, hallucination detection |
 | `AuditLogger` | Immutable audit trail for all interactions |
+
+> These teaching utilities ship inside the canonical `trust_safety/` package as
+> `trust_safety.lessons`. Production-grade equivalents — built on Pydantic v2 and
+> Microsoft Presidio, with tamper-evident audit logging — live alongside them under
+> `trust_safety/guardrails/` and `trust_safety/governance/`. Each teaching class is
+> docstring-mapped to its production counterpart.
 
 ### Break (10 min)
 
@@ -91,9 +97,14 @@ Go through the checklist:
 
 ```
 trustworthy_ai/
-├── shared/
-│   ├── config.py          # Configuration templates
-│   └── safety.py          # Core safety utilities
+├── trust_safety/                 # Canonical safety package (single source of truth)
+│   ├── lessons/                  #   ↳ stdlib-only teaching layer used by the demos
+│   │   ├── config.py             #     Configuration templates
+│   │   └── safety.py             #     Core safety utilities
+│   ├── guardrails/               #   ↳ production input/output guardrails
+│   ├── orchestrator/             #   ↳ tool registry, policy gate, approval queue
+│   ├── governance/               #   ↳ tamper-evident audit log
+│   └── ...                       #   ↳ llm, gateway, policies, eval, redteam, tests
 │
 ├── 1_llm_basics/
 │   ├── 01_prompt_engineering.py  # Usual vs Trustworthy prompting
@@ -120,6 +131,11 @@ trustworthy_ai/
 ### Prerequisites
 - Python 3.8+
 - No external dependencies required (pure Python standard library only)
+
+> **Optional:** the production guardrail stack under `trust_safety/` (everything
+> except `trust_safety/lessons/`) additionally requires **Python 3.10+** and the
+> packages in `trust_safety/requirements.txt` (Pydantic v2, Microsoft Presidio).
+> The session lessons do not need it — they import only `trust_safety.lessons`.
 
 ### Environment Setup
 
@@ -221,6 +237,9 @@ This is a KSS session resource. Feel free to extend:
 - Add more PII patterns to `ContentFilter`
 - Add more tool implementations to the agent
 - Create additional coding challenges
+
+When a teaching utility gains a production counterpart, keep the two in sync and
+update the mapping table in the docstring of `trust_safety/lessons/safety.py`.
 
 ---
 <!-- # Resume this session with:

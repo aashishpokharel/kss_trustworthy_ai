@@ -11,6 +11,12 @@
 #
 # Python Version: 3.8+
 # Tested with: Python 3.14
+#
+# The session lessons live under the canonical `trust_safety/` package and
+# import only `trust_safety.lessons` (stdlib-only), so the guarantee above
+# still holds. The production guardrail stack under `trust_safety/` — i.e.
+# everything except `trust_safety/lessons/` — has its own manifest in
+# `trust_safety/requirements.txt` (Python 3.10+, Pydantic v2, Presidio).
 
 # If you add external dependencies in the future, list them here:
 # e.g., openai>=1.0.0, anthropic>=0.30.0

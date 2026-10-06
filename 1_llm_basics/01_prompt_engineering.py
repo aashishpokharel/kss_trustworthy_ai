@@ -18,7 +18,7 @@ import sys
 import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
-from shared.safety import (
+from trust_safety.lessons.safety import (
     ContentFilter,
     PromptInjectionDetector,
     OutputValidator,
@@ -247,7 +247,7 @@ class TrustworthyLLMClient:
         config=None,
         audit_logger=None
     ):
-        from shared.config import TrustworthyConfig, TrustLevel
+        from trust_safety.lessons.config import TrustworthyConfig, TrustLevel
         self.config = config or TrustworthyConfig()
         self.audit_logger = audit_logger
         self.request_times = deque()
@@ -379,7 +379,7 @@ class TrustworthyLLMClient:
     ):
         """Log audit entry"""
         if self.audit_logger:
-            from shared.safety import AuditEntry, compute_hash
+            from trust_safety.lessons.safety import AuditEntry, compute_hash
             entry = AuditEntry(
                 user_id=user_id,
                 request_hash=compute_hash(prompt),

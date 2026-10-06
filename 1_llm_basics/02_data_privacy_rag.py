@@ -20,7 +20,7 @@ import sys
 import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
-from shared.safety import ContentFilter, AuditLogger, AuditEntry, compute_hash
+from trust_safety.lessons.safety import ContentFilter, AuditLogger, AuditEntry, compute_hash
 from typing import List, Dict, Optional, Set
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -188,7 +188,7 @@ class TrustworthyRAG:
         user_roles = user_roles or ["public"]
         
         # Step 1: Scan query for injection
-        from shared.safety import PromptInjectionDetector
+        from trust_safety.lessons.safety import PromptInjectionDetector
         is_injection, patterns = PromptInjectionDetector.check(query)
         if is_injection:
             result["success"] = False
