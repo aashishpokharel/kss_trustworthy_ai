@@ -1,3 +1,0 @@
-KSS: Trustworthy AI — From Explainability to Verifiable Trust
-
-This knowledge-sharing session unpacks what "trustworthy AI" actually means under the NIST AI RMF definition — not as a buzzword, but as an engineering discipline with seven measurable characteristics. We'll work through why explainability alone isn't sufficient for trust, explore six core principles with concrete implementation techniques, connect them to causal reasoning and current regulatory frameworks (EU AI Act, NIST AI RMF), and close by mapping every principle directly to what our own codebase implements — including an honest accounting of where the gaps still are. Aimed at peers, not executives: technical depth, precise vocabulary, no marketing.
