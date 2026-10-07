@@ -54,6 +54,9 @@ SLATE = colors.HexColor("#33475b")
 RULE = colors.HexColor("#c7d2de")
 CODE_BG = colors.HexColor("#f4f6f9")
 
+# Bullet glyphs for nesting levels 0 (topic), 1 (subtopic), 2 (sub-subtopic).
+BULLETS = ("\u2022", "\u2013", "\u00b7")
+
 # ---------------------------------------------------------------------------
 # Text normalisation (make the Markdown safe for the base PDF fonts)
 # ---------------------------------------------------------------------------
@@ -137,10 +140,20 @@ def build_styles():
             leading=13.5, textColor=colors.HexColor("#1c1c1c"),
             alignment=TA_JUSTIFY, spaceAfter=6,
         ),
-        "bullet": ParagraphStyle(
-            "bullet", parent=ss["BodyText"], fontName="Helvetica", fontSize=9.5,
+        "bullet1": ParagraphStyle(
+            "bullet1", parent=ss["BodyText"], fontName="Helvetica", fontSize=9.5,
             leading=13.5, textColor=colors.HexColor("#1c1c1c"),
             leftIndent=14, bulletIndent=3, spaceAfter=3,
+        ),
+        "bullet2": ParagraphStyle(
+            "bullet2", parent=ss["BodyText"], fontName="Helvetica", fontSize=9.5,
+            leading=13.5, textColor=colors.HexColor("#1c1c1c"),
+            leftIndent=26, bulletIndent=15, spaceAfter=2,
+        ),
+        "bullet3": ParagraphStyle(
+            "bullet3", parent=ss["BodyText"], fontName="Helvetica", fontSize=9.5,
+            leading=13.5, textColor=colors.HexColor("#1c1c1c"),
+            leftIndent=38, bulletIndent=27, spaceAfter=2,
         ),
         "number": ParagraphStyle(
             "number", parent=ss["BodyText"], fontName="Helvetica", fontSize=9.5,
@@ -330,8 +343,14 @@ def markdown_to_flowables(text, styles):
             i += 1
             continue
 
-        if stripped.startswith("- "):
-            flow.append(Paragraph(inline(stripped[2:]), styles["bullet"], bulletText="\u2022"))
+        m_bullet = re.match(r"^(\s*)- (.*)$", line)
+        if m_bullet:
+            level = min(len(m_bullet.group(1)) // 2, 2)
+            flow.append(Paragraph(
+                inline(m_bullet.group(2)),
+                styles["bullet%d" % (level + 1)],
+                bulletText=BULLETS[level],
+            ))
             i += 1
             continue
 
