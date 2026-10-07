@@ -121,8 +121,21 @@ trustworthy_ai/
 ├── 4_best_practices/
 │   └── checklist.md              # Complete best practices guide
 │
+├── 5_responsible_trustworthy_ai/ # Core questions (C1–C4) + running case
+│
+├── questions/                    # Session, agentic and scenario question sets
+│
+├── learning_resources/           # Student-facing module document (Markdown + PDF)
+│   └── build_pdf.py              #   ↳ renders the Markdown to a printable PDF
+│
 └── README.md                     # This file
 ```
+
+> 📚 **Learning resources:** the student-facing module companion — learning
+> objectives, the Northline Bank running case, sessions, labs, assessment and a
+> repository map — lives in [`learning_resources/`](learning_resources/).
+> Edit the Markdown source and rebuild the PDF with
+> `python3 learning_resources/build_pdf.py`.
 
 ---
 
