@@ -6,7 +6,7 @@ surrounding principles of fairness, robustness, privacy and accountability).
 
 | File | What it is |
 |------|------------|
-| `Responsible_and_Trustworthy_AI_Learning_Resources.md` | **Source of truth.** Full learning-resources document (objectives, running case, sessions, labs, assessment, references, repo map). |
+| `Responsible_and_Trustworthy_AI_Learning_Resources.md` | **Source of truth.** Full learning-resources document, structured as **Heading → Learning Objectives → Contents to cover → Resources + Additional Materials**. |
 | `Responsible_and_Trustworthy_AI_Learning_Resources.pdf` | Rendered, printable version of the Markdown. |
 | `build_pdf.py` | Generator that turns the Markdown into the PDF. |
 

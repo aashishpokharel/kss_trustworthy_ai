@@ -7,7 +7,7 @@ Companion to the module plan *Responsible and Trustworthy AI* (Explainable AI, C
 
 ---
 
-## Learning Objectives (Bloom's Taxonomy)
+## Learning Objectives
 
 By the end of this module, all learners will be able to:
 
@@ -29,7 +29,9 @@ By the end of the module, some learners will be able to (depth / stretch):
 ---
 
 
-## The running case — Northline Bank "CreditBoost"
+## Contents to cover
+
+### The running case — Northline Bank "CreditBoost"
 
 All four sessions work on **one composite case** so you walk a whole lifecycle — **development → deployment → end-user serving** — instead of four disconnected exercises.
 
@@ -44,7 +46,7 @@ The four whole-course questions (`C1`–`C4`) and their model answers, rubrics a
 
 ---
 
-## How the module runs
+### How the module runs
 
 | Session | Focus | Est. time | Core question | Key artifacts in this repo |
 |---|---|---|---|---|
@@ -58,7 +60,7 @@ Session 3 is the *optional* session: if causation was already covered in an earl
 
 ---
 
-## Session 1 — Foundations of Responsible & Trustworthy AI (60–90 min)
+### Session 1 — Foundations of Responsible & Trustworthy AI (60–90 min)
 
 **Focus:** the principles, the vocabulary, and the two frameworks every trustworthiness claim is judged against.
 
@@ -87,7 +89,7 @@ python3 5_responsible_trustworthy_ai/build_questions.py --check  # validate the 
 
 ---
 
-## Session 2 — Explainable AI (XAI) (90–120 min)
+### Session 2 — Explainable AI (XAI) (90–120 min)
 
 **Focus:** making a black-box model's behaviour legible to the three audiences that matter — the affected person, the operator and the regulator.
 
@@ -115,7 +117,7 @@ python3 5_responsible_trustworthy_ai/quiz.py --id C2 --phase serving
 
 ---
 
-## Session 3 — Causal AI for Deeper Trust (90–120 min) *[optional]*
+### Session 3 — Causal AI for Deeper Trust (90–120 min) *[optional]*
 
 **Focus:** moving from *what correlates* to *what would change if we intervened* — the question deployment decisions actually turn on.
 
@@ -145,7 +147,7 @@ python3 5_responsible_trustworthy_ai/quiz.py --id C3 --phase deployment
 ---
 
 
-## Session 4 — Integration, Auditing & Regulation (60–90 min + project work)
+### Session 4 — Integration, Auditing & Regulation (60–90 min + project work)
 
 **Focus:** pulling the previous sessions into one defensible pre-deployment review and an evidence pack an auditor can read.
 
@@ -178,7 +180,7 @@ python3 -m pytest trust_safety/tests/test_incident_review.py trust_safety/tests/
 
 ---
 
-## Engineering Track — Prompt & Agentic AI Safety (hands-on)
+### Engineering Track — Prompt & Agentic AI Safety (hands-on)
 
 **Focus:** the engineering counterpart of the four sessions — the concrete guardrails, permissions and governance you build into LLM and agentic systems. This is the part of the module aimed directly at AI / software engineers.
 
@@ -201,38 +203,38 @@ python3 -m pytest trust_safety/tests/test_incident_review.py trust_safety/tests/
 
 Each lab below maps those concepts to runnable code. Run every demo from the repository root.
 
-### Lab A — Prompt engineering & input validation  →  `1_llm_basics/01_prompt_engineering.py`
+#### Lab A — Prompt engineering & input validation  →  `1_llm_basics/01_prompt_engineering.py`
 
 - **Concepts:** the unsafe `f"Answer: {user_input}"` anti-pattern vs. a defensive pipeline; instruction/data separation with delimiters; structured output contracts.
 - **Build with:** `trust_safety.lessons.safety` — `ContentFilter.sanitize_pii`, `ContentFilter.contains_sensitive_topic`, `PromptInjectionDetector.check`, `PromptInjectionDetector.compute_risk_score`, `OutputValidator`.
 - **Run:** `python3 1_llm_basics/01_prompt_engineering.py`
 
-### Lab B — Data privacy & RAG governance  →  `1_llm_basics/02_data_privacy_rag.py`
+#### Lab B — Data privacy & RAG governance  →  `1_llm_basics/02_data_privacy_rag.py`
 
 - **Concepts:** PII scanning before embedding, per-document access control, data lineage, right-to-forget, and auditing every retrieval.
 - **Build with:** `TrustworthyRAG` / `Document` vs. the `UnsafeRAG` anti-pattern; `AuditLogger`, `compute_hash`; production PII via `trust_safety/guardrails/input/pii_detector.py` (Presidio-backed, redact/mask/tokenize).
 - **Run:** `python3 1_llm_basics/02_data_privacy_rag.py`
 
-### Lab C — Agentic safety: naive vs. trustworthy  →  `2_agentic_ai/`
+#### Lab C — Agentic safety: naive vs. trustworthy  →  `2_agentic_ai/`
 
 - **Concepts:** tool risk classification, role-based permissions, argument validation, path-traversal protection, human-in-the-loop approval, rate limiting, sandboxing, session boundaries, prompt-injection checks on *every* tool call.
 - **Build with:** `2_agentic_ai/01_naive_agent.py` (the anti-pattern — `shell=True`, unrestricted file access, no approval) vs. `2_agentic_ai/02_trustworthy_agent.py` (`ToolRiskLevel.SAFE…CRITICAL`, `ToolCapability`, `PermissionManager`). Production equivalents live in `trust_safety/orchestrator/` (`tool_registry`, `policy_gate`, `approval_queue`, `circuit_breaker`).
 - **Run:** `python3 2_agentic_ai/01_naive_agent.py` then `python3 2_agentic_ai/02_trustworthy_agent.py`
 
-### Lab D — Testing & the coding challenge  →  `3_testing/`
+#### Lab D — Testing & the coding challenge  →  `3_testing/`
 
 - **Concepts:** unit tests for filters, injection detection and output validation; property-based tests (idempotency, invariants); integration tests for permission enforcement; load tests for rate limiting.
 - **Challenge:** build `safe_code_review(code_snippet, reviewer_role)` that passes all 5 cases — input validation, role permissions (`viewer`/`developer`/`admin`), output validation, audit trail. See `3_testing/CHALLENGE.md`.
 - **Run:** `python3 3_testing/01_llm_testing.py` then open `3_testing/CHALLENGE.md`
 
-### Lab E — Best-practice checklist  →  `4_best_practices/checklist.md`
+#### Lab E — Best-practice checklist  →  `4_best_practices/checklist.md`
 
 - **Concepts:** the seven areas — prompt engineering, data privacy & RAG, agentic safety, testing, monitoring & observability, deployment, and architecture decision records — as an auditable checklist.
 
 ---
 
 
-## How to use these questions
+### How to use these questions
 
 The module is built around **"Try First, Understand Later"** and **low floor / high ceiling / wide walls**. `C1` can be attempted cold, before any vocabulary, and still produce useful disagreement in the room.
 
@@ -248,7 +250,7 @@ A wider set of open prompts is available in `questions/session_questions.md`, `q
 
 ---
 
-## Assessment — tests for chapter-level knowledge/skills
+### Assessment — tests for chapter-level knowledge/skills
 
 - **Quiz** on the core principles and the difference between **XAI and Causal** reasoning.
 - **Interpret a provided SHAP plot or causal graph** and explain what it does and does not license you to conclude.
@@ -257,7 +259,7 @@ A wider set of open prompts is available in `questions/session_questions.md`, `q
 
 ---
 
-## Assignment for the week — "Try First, Understand Later"
+### Assignment for the week — "Try First, Understand Later"
 
 Attempt to explain a black-box model (e.g., a trained XGBoost or neural net on a tabular dataset such as **UCI Adult Income** or **COMPAS**) using **basic feature importance** or **partial-dependence plots** *before* the formal XAI/Causal material. Then reflect, in writing, on the limitations of what you produced — what it convinced you of, and what it quietly left out.
 
@@ -269,7 +271,7 @@ Attempt to explain a black-box model (e.g., a trained XGBoost or neural net on a
 
 ---
 
-## Main takeaway
+### Main takeaway
 
 Responsible AI is not just about accuracy — it is about building systems that are **transparent, causally grounded, fair, and accountable**, so that humans can trust and effectively oversee them. XAI and Causal AI are the practical enablers: they turn "the model is 94% accurate" into decisions a person can inspect, contest and own.
 
@@ -277,7 +279,9 @@ Responsible AI is not just about accuracy — it is about building systems that 
 
 ---
 
-## References & further reading
+## Resources + Additional Materials
+
+### References & further reading
 
 - **NIST AI Risk Management Framework (AI RMF 1.0)** — GOVERN / MAP / MEASURE / MANAGE.
 - **EU AI Act** — Annex III high-risk categories, Chapter III obligations, Arts. 27, 72–73, 86.
@@ -290,7 +294,7 @@ Responsible AI is not just about accuracy — it is about building systems that 
 
 ---
 
-## Repository map (where the code lives)
+### Repository map (where the code lives)
 
 ```
 kss_trustworthy_ai/
@@ -309,6 +313,15 @@ kss_trustworthy_ai/
 │   └── tests/                     Test suite for the production stack
 └── ui/                            Streamlit dashboard, approval queue, consoles
 ```
+
+### Question banks & hands-on materials
+
+- **Core running-case questions:** [`5_responsible_trustworthy_ai/00_core_questions.md`](../5_responsible_trustworthy_ai/00_core_questions.md) — `C1`–`C4` with model answers, rubrics and pitfalls; drill them with `python3 5_responsible_trustworthy_ai/quiz.py`.
+- **Question sets:** `questions/session_questions.md`, `questions/agentic_llm_questions.md` and `questions/scenario_questions.md` (two full scenarios — a hospital ML system and an internal agentic assistant).
+- **Best-practice checklist:** [`4_best_practices/checklist.md`](../4_best_practices/checklist.md) — the seven-area "never / always" checklist.
+- **Module plan:** `Module Plan_ Responsible and Trustworthy AI.pdf` (repository root).
+
+---
 
 *Generated as a companion document to the KSS × Fusemachines Fellowship module
 "Responsible and Trustworthy AI". Source of truth: this Markdown file; the PDF is

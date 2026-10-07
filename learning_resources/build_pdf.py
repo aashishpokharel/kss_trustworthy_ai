@@ -128,6 +128,10 @@ def build_styles():
             "h3", parent=ss["Heading3"], fontName="Helvetica-Bold", fontSize=11,
             leading=14, textColor=SLATE, spaceBefore=8, spaceAfter=3,
         ),
+        "h4": ParagraphStyle(
+            "h4", parent=ss["Heading4"], fontName="Helvetica-Bold", fontSize=10,
+            leading=13, textColor=SLATE, spaceBefore=6, spaceAfter=2,
+        ),
         "body": ParagraphStyle(
             "body", parent=ss["BodyText"], fontName="Helvetica", fontSize=9.5,
             leading=13.5, textColor=colors.HexColor("#1c1c1c"),
@@ -294,7 +298,7 @@ def markdown_to_flowables(text, styles):
         if stripped.startswith("#"):
             level = len(stripped) - len(stripped.lstrip("#"))
             title = stripped[level:].strip()
-            style = styles["h1"] if level == 1 else styles["h2"] if level == 2 else styles["h3"]
+            style = {1: styles["h1"], 2: styles["h2"], 3: styles["h3"]}.get(level, styles["h4"])
             flow.append(Paragraph(inline(title), style))
             if level == 2:
                 flow.append(Spacer(1, 1))
