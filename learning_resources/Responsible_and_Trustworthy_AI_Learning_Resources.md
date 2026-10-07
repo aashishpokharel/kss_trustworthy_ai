@@ -1,5 +1,32 @@
 # Responsible & Trustworthy AI — Learning Resources
 
+## Introduction
+
+Welcome to **Responsible and Trustworthy AI**. Most courses teach you how to make a model *work*; this one is about deciding whether it deserves to be **trusted** — and being able to defend that decision with evidence, not intuition.
+
+We start from first principles — fairness, transparency, accountability, robustness, privacy and reliability — and the risk frameworks, the **NIST AI RMF** and the **EU AI Act**, that turn those principles into obligations. From there we climb three ladders: opening the black box with **explainable AI**, separating correlation from cause with **causal AI**, and keeping a live system safe through **guardrails, permissions, monitoring and audit**.
+
+We learn by doing. Every session pairs a concept with runnable code, and we keep returning to a single running case so the ideas have somewhere concrete to land. Come ready to question the demo, not just run it: the point is not to memorise the checklist, but to know when the checklist is not enough.
+
+## Syllabus
+
+The module runs over four sessions, each pairing a concept with runnable code, with a hands-on engineering track running alongside.
+
+- **Session 1 — Foundations of Responsible & Trustworthy AI.** Core principles (fairness, transparency, accountability, robustness, privacy, reliability); trustworthiness vs. accuracy; the **NIST AI RMF** and the **EU AI Act** / **GDPR**; the AI lifecycle.
+- **Session 2 — Explainable AI (XAI).** Interpretable vs. black-box models; LIME, SHAP, partial-dependence plots and counterfactuals; global vs. local explanations; what makes an explanation good.
+- **Session 3 — Causal AI for Deeper Trust** *(optional).* Correlation vs. causation; the ladder of causation; DAGs and identification; causal failure modes.
+- **Session 4 — Integration, Auditing & Regulation.** Accountability as a mechanism; the evidence pack; post-market monitoring; incident response; go/no-go and residual-risk acceptance; red-teaming.
+- **Engineering track — Prompt & Agentic AI Safety, plus Testing & Best Practices.** Input/output guardrails, prompt-injection defence, PII and sensitive-data handling, least-privilege permissions and human-in-the-loop control; test strategy, monitoring & observability, deployment and the best-practice checklist.
+
+## Questions we will try to answer
+
+The module is organised around four questions. Each is anchored in one session but **cannot be answered inside it alone** — a strong answer reaches across the others. By the end, you should be able to move between them without being told that they connect.
+
+- **What licenses the claim that a system is trustworthy?** What evidence — and whose authority — lets us call a system trustworthy at all?
+- **What makes an explanation adequate — and to whom?** Why a *plausible* explanation is not the same as a *true* one, and how "adequate" changes with the audience.
+- **When may a system act on a number?** What separates a correlation a model has learned from a cause it can safely act on.
+- **Who is accountable once the system is live, and by what mechanism?** How oversight, audit and escalation turn accountability from a promise into a mechanism.
+
 ## Learning Objectives
 
 By the end of this module, all learners will be able to:
