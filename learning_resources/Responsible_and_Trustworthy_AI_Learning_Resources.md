@@ -1,11 +1,5 @@
 # Responsible & Trustworthy AI — Learning Resources
 
-Course outline for the module *Responsible and Trustworthy AI* — the topics and subtopics covered, the learning objectives, and the supporting materials.
-
-**Audience:** Fellowship learners and KSS AI / software engineers · **Duration:** 4 sessions (~6 hours) + a 1-hour coding challenge · **Facilitators:** Sujan Sharma / Aashish Pokharel · **Reference book:** *Trustworthy AI*
-
----
-
 ## Learning Objectives
 
 By the end of this module, all learners will be able to:
@@ -22,8 +16,6 @@ By the end of the module, some learners will be able to (depth / stretch):
 7. **Compare multiple explanation methods** (e.g., SHAP vs. counterfactuals) and evaluate them with fidelity/stability metrics or a small human-subject study. (Bloom's: Analyze/Evaluate/Create)
 8. **Build and query a simple causal model** (DAG plus estimand, DoWhy-style) for intervention or counterfactual analysis on a dataset. (Bloom's: Apply/Create)
 9. **Critique a live system** against the NIST AI RMF and the EU AI Act, assemble an evidence pack, and defend a go/no-go deployment decision with named owners, tolerances and review dates. (Bloom's: Evaluate/Create)
-
-**Prerequisites:** basic supervised machine learning (scikit-learn), Python (pandas, matplotlib/seaborn, Jupyter), and introductory statistics (correlation, p-values).
 
 ---
 
@@ -120,7 +112,3 @@ By the end of the module, some learners will be able to (depth / stretch):
 - Module plan — *Responsible and Trustworthy AI*.
 - Best-practice checklist — the seven-area "never / always" checklist.
 - Question banks — core questions (C1–C4), session questions, and the agentic and scenario question sets.
-
----
-
-*Generated as a companion document to the KSS × Fusemachines Fellowship module "Responsible and Trustworthy AI". Source of truth: this Markdown file; the PDF is produced from it by `build_pdf.py`.*
