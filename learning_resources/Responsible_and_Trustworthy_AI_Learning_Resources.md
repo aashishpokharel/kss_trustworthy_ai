@@ -1,5 +1,4 @@
 # Responsible & Trustworthy AI — Learning Resources
-### KSS × Fusemachines Fellowship · Student Edition
 
 Course outline for the module *Responsible and Trustworthy AI* — the topics and subtopics covered, the learning objectives, and the supporting materials.
 
