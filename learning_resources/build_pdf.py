@@ -371,20 +371,9 @@ def markdown_to_flowables(text, styles):
 
 def decorate(canvas, doc):
     canvas.saveState()
-    canvas.setStrokeColor(RULE)
-    canvas.setLineWidth(0.5)
-    canvas.line(1.8 * cm, A4[1] - 1.35 * cm, A4[0] - 1.8 * cm, A4[1] - 1.35 * cm)
+    # Running page header intentionally omitted (fellowship branding is implied).
     canvas.setFont("Helvetica", 7.5)
     canvas.setFillColor(SLATE)
-    canvas.drawString(
-        1.8 * cm, A4[1] - 1.15 * cm,
-        "Responsible & Trustworthy AI - Learning Resources",
-    )
-    canvas.drawRightString(
-        A4[0] - 1.8 * cm, A4[1] - 1.15 * cm,
-        "KSS x Fusemachines Fellowship",
-    )
-    canvas.setFont("Helvetica", 7.5)
     canvas.drawCentredString(A4[0] / 2, 1.0 * cm, "Page %d" % doc.page)
     canvas.restoreState()
 
