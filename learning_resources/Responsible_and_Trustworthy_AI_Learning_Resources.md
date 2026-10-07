@@ -2,11 +2,13 @@
 
 ## Introduction
 
-Welcome to **Responsible and Trustworthy AI**. Most courses teach you how to make a model *work*; this one is about deciding whether it deserves to be **trusted** — and being able to defend that decision with evidence, not intuition.
+Hi everyone,
 
-We start from first principles — fairness, transparency, accountability, robustness, privacy and reliability — and the risk frameworks, the **NIST AI RMF** and the **EU AI Act**, that turn those principles into obligations. From there we climb three ladders: opening the black box with **explainable AI**, separating correlation from cause with **causal AI**, and keeping a live system safe through **guardrails, permissions, monitoring and audit**.
+I'm **Aashish Pokharel**, and I'll be your instructor for the module **Responsible and Trustworthy AI**. I work as an ML Engineer at Fusemachines, where I build and deploy machine learning systems. Through my work, I've learned that having a strong understanding of the fundamentals makes it much easier to solve real-world machine learning problems — and that a model which merely *works* is not the same as one that can be **trusted**.
 
-We learn by doing. Every session pairs a concept with runnable code, and we keep returning to a single running case so the ideas have somewhere concrete to land. Come ready to question the demo, not just run it: the point is not to memorise the checklist, but to know when the checklist is not enough.
+We'll start with the foundations: what it actually means for a system to be trustworthy — fairness, transparency, accountability, robustness, privacy and reliability — and the risk frameworks, the **NIST AI RMF** and the **EU AI Act**, that turn those principles into obligations. From there we'll open up the black box with **Explainable AI** (feature importance, SHAP/LIME, partial-dependence plots and counterfactuals), separate correlation from cause with **Causal AI**, and finish with the engineering and governance that keep a live system safe — input and output guardrails, least-privilege permissions, human-in-the-loop control, monitoring and tamper-evident audit.
+
+Throughout, my goal is to help you build an intuitive understanding of these ideas, not just show you how to implement them. We'll pair every concept with runnable code and keep returning to a single running case, so the ideas have somewhere concrete to land. By the end, you'll be able to look at a real system and argue — with evidence, not intuition — whether it should ship, and who owns the risk if it does. I'm excited to have you in the course, and let's get started!
 
 ## Syllabus
 
